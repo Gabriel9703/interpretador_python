@@ -1,8 +1,6 @@
 
 ## Conjunto de instruções que minha VM vai entender
-
 class Instrucao:
-
     def __init__(self, opcode, agr=None):
         self.opcode = opcode
         self.arg = agr
@@ -11,8 +9,7 @@ class Instrucao:
         return f"{self.opcode} {self.arg if self.arg is not None else ''}".strip()
 
 
-## Nossas instruções
-
+## Nossas instruções, que a VM vai entender
 LOAD_CONST = "LOAD_CONST"
 ADD = "ADD"
 PRINT = "PRINT"  

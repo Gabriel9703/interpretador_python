@@ -1,9 +1,9 @@
-# SIMULACAO INTERPRETADOR PYTHON
+# SIMULACÃO INTERPRETADOR PYTHON
 
 - Um projeto para fins de estudo, que visa simular os processos que ocorrem,
 desde o código-fonte até o código máquina, na linguagem Python.
 O interpretador simulado é o Cpython, e os seguintes processos, desde a compilação
-código fonte em bytecode, e a interpretação do bytecode pela PVM para código fonte, serão
+código fonte em bytecode, e a interpretação do bytecode pela PVM para código máquina, serão
 abordados no simulado.
 
 # 1° Fase (Compilação de Código-Fonte em Bytecode)

@@ -1,5 +1,5 @@
 from compilacao.bytecode import Instrucao, LOAD_CONST, ADD, PRINT, HALT
-from vm.vm import MaquinaVirtual
+from maquina_virtual.vm import MaquinaVirtual
 from compilacao.parser import parse
 from compilacao.codegen import compilar_ast
 
@@ -15,7 +15,7 @@ bytecode = [
 maquina_virtual = MaquinaVirtual(bytecode)
 maquina_virtual.executar()
 
-codigo_fonte = "imprimir(80 + 90)"
+codigo_fonte = "Print(10 + 20)"
 ast = parse(codigo_fonte)
 bytecode = compilar_ast(ast)
 bytecode.append(Instrucao(HALT))

@@ -2,6 +2,7 @@ from compilacao.bytecode import Instrucao, LOAD_CONST, ADD, PRINT, HALT
 from compilacao.ast_nodes import Numero, BinaryOP, Print
 
 
+# Convertendo o AST em bytecode
 def compilar_ast(node):
     bytecode = []
 

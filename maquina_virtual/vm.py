@@ -2,8 +2,6 @@
 from compilacao.bytecode import *
 
 ### MAQUINA VIRTUAL QUE EXECUTA BYTECODE
-
-
 class MaquinaVirtual:
     def __init__(self, bytecode):
         self.byetcode = bytecode 

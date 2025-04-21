@@ -1,0 +1,63 @@
+# Como código python é lido, interpretado e executado 
+
+Objetivo é uma simulação simples de uma operação de soma, dentro de um print:
+
+- print(10 + 20)
+
+
+- O que estou simulando:
+
+Análise Lexica - Dividir os textos em tokens ( Manual ou tokenize())
+Análise Sintática - Construir a estrutura do código (parser.py)
+Geração bytecode - Transforma a AST em instruções intermediárias (IL)
+Execução - Leitura pela "PVM" e execução do bytecode 
+
+A Operação de Regex na função parse é usada somente para identificar print,
+na prática as expressões regulares são usadas no processo de tokenização, para identificar 
+e separar os textos. E o Parse usaria o .gramm, ou seja a gramatica já escrita da linguagem
+para montar os nós.
+
+- A VM só consegue entender bytecode, então é necessário
+transformar essa AST em bytecode ou seja.
+
+## Isso:
+ Print(
+    BinaryOp(
+        Numero(10),
+        '+',
+        Numero(20)
+    )
+) 
+
+## Tem que virar isso:
+0: LOAD_CONST 10
+1: LOAD_CONST 20
+2: ADD
+3: PRINT
+4: HALT
+
+
+- A linguagem intermediária, gerada pelo bytecode, é um pouco
+semelhante ao assembly, mas ao invés de rodar no hardware real, 
+rodaria na máquina Virtual
+
+
+Resumo do Fluxo:
+
+Código fonte: "print(10 + 20)"
+       ↓
+AST: Print(BinaryOp(Number(10), '+', Number(20)))
+       ↓
+Bytecode:
+    LOAD_CONST 10
+    LOAD_CONST 20
+    ADD
+    PRINT
+    HALT
+       ↓
+Execução:
+    Pilha: [10, 20] → soma → [30] → print → 30
+
+# opcode
+Operation Code - Nome da instrução no bytecode
+É o que diz o que fazer com os dados da pilha
