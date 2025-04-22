@@ -1,4 +1,4 @@
-# Como código python é lido, interpretado e executado 
+Como código python é lido, interpretado e executado 
 
 Objetivo é uma simulação simples de uma operação de soma, dentro de um print:
 
@@ -20,7 +20,7 @@ para montar os nós.
 - A VM só consegue entender bytecode, então é necessário
 transformar essa AST em bytecode ou seja.
 
-## Isso:
+Isso:
  Print(
     BinaryOp(
         Numero(10),
@@ -29,7 +29,7 @@ transformar essa AST em bytecode ou seja.
     )
 ) 
 
-## Tem que virar isso:
+Tem que virar isso:
 0: LOAD_CONST 10
 1: LOAD_CONST 20
 2: ADD
@@ -61,3 +61,8 @@ Execução:
 # opcode
 Operation Code - Nome da instrução no bytecode
 É o que diz o que fazer com os dados da pilha
+
+
+# TOKENIZE (ANAlISE LEXICA)
+
+Estou usando o 

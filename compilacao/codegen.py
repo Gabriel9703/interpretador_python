@@ -1,4 +1,4 @@
-from compilacao.bytecode import Instrucao, LOAD_CONST, ADD, PRINT, HALT
+from compilacao.bytecode import *
 from compilacao.ast_nodes import Numero, BinaryOP, Print
 
 

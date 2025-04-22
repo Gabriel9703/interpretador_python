@@ -33,3 +33,21 @@ Imprimir(
     )
 ) 
  """       
+
+class Variavel:
+    def __init__(self, nome):
+        self.nome = nome
+
+
+class Atribuicao:
+    def __init__(self, nome, valor):
+        self.nome = nome
+        self.valor = valor
+
+
+class If:
+    def __init__(self, condition, then_body, else_body=None):
+        self.condition = condition
+        self.then_body = then_body
+        self.else_body = else_body
+        
