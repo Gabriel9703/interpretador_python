@@ -1,28 +1,20 @@
 import tokenize
 from io import BytesIO
 
+
+""" Criando uma lista com tuplas de tokens, capturados pelo
+modulo tokenize, ignorando (ENCONDING, NEWLINE e ENDMAKER),
+por que a ideia é pegar apenas a string do token"""
+
 def lex(codigo_fonte):
     resultado = []
     tokens = tokenize.tokenize(BytesIO(codigo_fonte.encode('utf-8')).readline)
 
     for token in tokens:
-        tipo_token = token.type
-        texto_token = token.string
-        
-        if tipo_token == tokenize.ENCODING:
+        if token.type in (tokenize.NEWLINE, tokenize.ENDMARKER, tokenize.ENCODING):
             continue
-        if tipo_token == tokenize.NUMBER:
-            resultado.append(('NUMBER', texto_token))
-        elif tipo_token == tokenize.NAME:
-            resultado.append(('NAME', texto_token))
-        elif tipo_token == tokenize.OP:
-            resultado.append(('OP', texto_token))
-        elif tipo_token == tokenize.NEWLINE or tipo_token == tokenize.ENDMARKER:
-            continue
-
         else:
-            resultado.append(("OTHER", texto_token))
-
+            resultado.append((token.type, token.string))
     return resultado        
 
 

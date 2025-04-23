@@ -1,27 +1,53 @@
-# SIMULACÃO INTERPRETADOR PYTHON
+# 🧠 Simulação da Pipeline do CPython
 
-- Um projeto para fins de estudo, que visa simular os processos que ocorrem,
-desde o código-fonte até o código máquina, na linguagem Python.
-O interpretador simulado é o Cpython, e os seguintes processos, desde a compilação
-código fonte em bytecode, e a interpretação do bytecode pela PVM para código máquina, serão
-abordados no simulado.
+Este projeto tem como objetivo aprofundar os estudos sobre o que acontece em **baixo nível** quando um script Python é executado.
 
-# 1° Fase (Compilação de Código-Fonte em Bytecode)
+A simulação cobre desde o processo de **tokenização** até a **geração de bytecode**, oferecendo uma visão didática da pipeline de execução. Questões mais avançadas, como o funcionamento interno da **stack machine** do Python ou a conversão final para código de máquina, **não são abordadas** neste momento.
 
-- Analise Lexica (Tokenização)
-- Parsing(Analise Sintática/Parse)
-- AST (montar a árvore sintática abstrata) 
+> 📌 Código-fonte analisado: `print(3 + 4)`
 
-# 2° Fase (Bytecode interpretado pela Python Virtual Machine)
-- Gerar arquivo .pyc (Bytecode lido pelo PVM)
-- Verificar como a Máquina Virtual, implementa a ideia de pilha para interpretar o bytecode
+---
 
+## 🛠️ Ferramentas Utilizadas
 
-Obs: Alguns desses processos podem ser verificados por algumas bibliotecas nativas
+- Python 3.12
+- Interpretador **CPython**
+- Bibliotecas da standard library que expõem a camada de baixo nível:
+  - `tokenize`: usada para entender como o Python separa os tokens
+  - `dis`: usada para visualizar os bytecodes gerados após a AST
 
-Tokenização:
-python -m tokenize -e nome_arquivo.py
+---
 
-Bytecode:
+## 🗂️ Estrutura do Projeto
 
-Import dis
+### 📁 `/compilacao`
+
+- `lexer.py`: utiliza o módulo `tokenize` para gerar strings de tokens
+- `parser.py` + `ast_node.py`: responsáveis pela construção da AST (*Abstract Syntax Tree*).
+  - `ast_node.py` define os nós da árvore
+  - `parser.py` monta a árvore a partir dos tokens
+- `bytecode.py`: contém as instruções compreendidas pela VM simulada
+- `compiler.py`: faz a compilação da AST em bytecode
+
+### 📁 `/maquina_virtual`
+
+- `vm.py`: simula uma **máquina virtual Python** que interpreta os bytecodes e executa as operações
+
+### 📁 `/exemplos`
+
+- Scripts de exemplo que mostram como visualizar bytecodes e tokens gerados pelo CPython
+
+---
+
+## 🧩 Conceitos Importantes
+
+- A **recursão** é essencial para a construção da AST. O CPython percorre os tokens recursivamente para gerar os nós da árvore sintática.
+- A **PVM** (Python Virtual Machine) funciona como um grande loop `switch/case` que interpreta opcodes, empilha e desempilha valores na stack.
+
+---
+
+## 📝 Observações
+
+Este projeto busca entender melhor como o **CPython** realiza seu trabalho por trás dos panos. Existem outros interpretadores como o **PyPy** (que utiliza JIT), **Jython**, entre outros — que não foram abordados aqui.
+
+Futuramente, pretendo estudar esses outros interpretadores para realizar comparações mais técnicas com o CPython.

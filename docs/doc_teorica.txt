@@ -64,5 +64,8 @@ Operation Code - Nome da instrução no bytecode
 
 
 # TOKENIZE (ANAlISE LEXICA)
+Erros de sintax são levantadados no parsing, que não consegue
+encontrar na gramatica o tokens para construir uma arvore
 
-Estou usando o 
+
+mini prototipo do pipeline arquivo por arquivo de como Cpython executa

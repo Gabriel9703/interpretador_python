@@ -2,8 +2,8 @@ import tokenize
 from io import BytesIO
 """ 
 Exemplo:
-Captura apenas os tokens textos, ignorando os espaços
-e quebras de linhas
+Captura apenas o texto do token, ignorando os espaços
+e quebras de linhas.
 """
 
 def lex(codigo_fonte):
@@ -31,3 +31,5 @@ def lex(codigo_fonte):
 codigo_fonte = "print(37 * 5 + 78 - 9)"
 tokens = lex(codigo_fonte)
 print(tokens)
+
+
