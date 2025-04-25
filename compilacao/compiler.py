@@ -2,17 +2,17 @@ from compilacao.bytecode import *
 from compilacao.ast_nodes import Numero, BinaryOP, Print
 
 
-# Convertendo o AST em bytecode
-def compilar_ast(node):
+
+def compilar_ast_em_bytecode(node):
     bytecode = []
 
     if isinstance(node, Print):
-        bytecode += compilar_ast(node.expressao)
+        bytecode += compilar_ast_em_bytecode(node.expressao)
         bytecode.append(Instrucao(PRINT))
 
     elif isinstance(node, BinaryOP):
-        bytecode += compilar_ast(node.esquerda)    
-        bytecode += compilar_ast(node.direita)    
+        bytecode += compilar_ast_em_bytecode(node.esquerda)    
+        bytecode += compilar_ast_em_bytecode(node.direita)    
 
         if node.op == '+':
             bytecode.append(Instrucao(ADD))

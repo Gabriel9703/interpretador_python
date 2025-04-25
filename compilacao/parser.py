@@ -1,9 +1,9 @@
-from compilacao.lexer import lex
+from compilacao.lexer import separando_em_tokens
 from compilacao.ast_nodes import Numero, BinaryOP, Print
 import tokenize
 
 def parse(codigo_fonte):
-    tokens = lex(codigo_fonte)
+    tokens = separando_em_tokens(codigo_fonte)
     pos = 0
 
     def match(tipo_esperado, valor_esperado=None):

@@ -1,4 +1,3 @@
-
 from compilacao.bytecode import *
 
 ### MAQUINA VIRTUAL QUE EXECUTA BYTECODE
@@ -6,7 +5,7 @@ class MaquinaVirtual:
     def __init__(self, bytecode):
         self.byetcode = bytecode 
         self.stack = []
-        self.pc = 0 # programa contador
+        self.pc = 0 # programa controle
 
     def executar(self):
         while self.pc < len(self.byetcode):

@@ -1,71 +1,43 @@
-Como código python é lido, interpretado e executado 
-
-Objetivo é uma simulação simples de uma operação de soma, dentro de um print:
-
-- print(10 + 20)
+ENTENDIMENTO DA PIPELINE DO CPYTHON:
 
 
-- O que estou simulando:
+Uma simples simulação de operação soma entre dois valores dentro de um print
 
-Análise Lexica - Dividir os textos em tokens ( Manual ou tokenize())
-Análise Sintática - Construir a estrutura do código (parser.py)
-Geração bytecode - Transforma a AST em instruções intermediárias (IL)
-Execução - Leitura pela "PVM" e execução do bytecode 
+As ideias essenciais para entender o trabalho do CPython:
 
-A Operação de Regex na função parse é usada somente para identificar print,
-na prática as expressões regulares são usadas no processo de tokenização, para identificar 
-e separar os textos. E o Parse usaria o .gramm, ou seja a gramatica já escrita da linguagem
-para montar os nós.
-
-- A VM só consegue entender bytecode, então é necessário
-transformar essa AST em bytecode ou seja.
-
-Isso:
- Print(
-    BinaryOp(
-        Numero(10),
-        '+',
-        Numero(20)
-    )
-) 
-
-Tem que virar isso:
-0: LOAD_CONST 10
-1: LOAD_CONST 20
-2: ADD
-3: PRINT
-4: HALT
+- Python é uma linguagem que por padrão vem com CPython imbutido, que é 
+um interpretador/compilador escrito em C que faz o trabalho embaixo dos panos
+para pegar um código fonte e transformar em código máquina, para isso ele segue 
+os passos abaixo:
+ - Separa os textos escritos no alto nivel em tokens, conhecido como análise lexica. Para essa
+ tokenização o CPython usa expressão regulares para encontrar os padrões e separar em classes
+ - Após tokenização, é feito uma análise sintática, assim sendo, é feito uma conferencia na gramatica
+ da linguagem para checar se as expressões podem montar uma AST válida.
+ - Com os tokens confirmados pelo parse, é montado uma Arvore Sintática Abstrata(AST) , um conceito
+ importante usado para montar os nós da arvore é recursão. A estrutura de dados usada é a arvore binária ou n-Ária
+ - Concluido a montagem da arvóre, o CPython compila essa estrutura em bytecode, ou seja, instruções que a máquina 
+ virtual do Python pode ler e interpretar.
+ - Todo esse processo de compilação gera um arquivo .pyc que fica dentro pasta __pycache__, isso é uma forma de
+ otimizar o código, para que se for rodado na segunda vez, ele não precise ser recompilado
 
 
-- A linguagem intermediária, gerada pelo bytecode, é um pouco
-semelhante ao assembly, mas ao invés de rodar no hardware real, 
-rodaria na máquina Virtual
+- CONCEITOS DA PVM
+
+- Agora, após a criação do bytecode, ocorre o processo de interpretação das instruções pela PVM
+a máquina virtual do python, usa o conceito de pilha para fazer a interpretação dos bytecode, por isso é 
+conhecida como stack machine,
+- A ideia central da PVM é ter um grande LOOP com vários switch/case que verifica os opcode(instruções de código) gerado pelo bytecode
+e vai empilhando/desimpilhando até o fim da operação.
+- A VM passa essas instruções interpretadas para máquina real, que faz as operações e devolve o resultado.
+- Os bytecodes só são entendidos pela PVM e ela interpreta eles em código máquina para CPU realizar as operações
+
+Obs: 
+Apartir da versões 3.11 o interpretador python foi otimizado para fazer operações
+mais rápidas dentro da VM, ou seja ele recompila o bytecode em instruções mais rápidas.
+Esse processo ainda estou estudando na documentação oficial(https://docs.python.org/pt-br/3.12/whatsnew/3.11.html#faster-startup)
+Mas a ideia é ter um interpretador Adaptativo Especializado, processo que que é tratado na PEP 659
 
 
-Resumo do Fluxo:
-
-Código fonte: "print(10 + 20)"
-       ↓
-AST: Print(BinaryOp(Number(10), '+', Number(20)))
-       ↓
-Bytecode:
-    LOAD_CONST 10
-    LOAD_CONST 20
-    ADD
-    PRINT
-    HALT
-       ↓
-Execução:
-    Pilha: [10, 20] → soma → [30] → print → 30
-
-# opcode
-Operation Code - Nome da instrução no bytecode
-É o que diz o que fazer com os dados da pilha
 
 
-# TOKENIZE (ANAlISE LEXICA)
-Erros de sintax são levantadados no parsing, que não consegue
-encontrar na gramatica o tokens para construir uma arvore
 
-
-mini prototipo do pipeline arquivo por arquivo de como Cpython executa

@@ -1,12 +1,14 @@
 import tokenize
 from io import BytesIO
+
 """ 
 Exemplo:
-Captura apenas o texto do token, ignorando os espaços
+Usa modulo tokenize, para capturar os tokens reais da linguagem
+Filtrando apenas o texto do token, ignorando os espaços
 e quebras de linhas.
 """
 
-def lex(codigo_fonte):
+def separacao_em_tokens(codigo_fonte):
     resultado = []
     tokens = tokenize.tokenize(BytesIO(codigo_fonte.encode('utf-8')).readline)
 
@@ -29,7 +31,7 @@ def lex(codigo_fonte):
     return resultado    
 
 codigo_fonte = "print(37 * 5 + 78 - 9)"
-tokens = lex(codigo_fonte)
+tokens = separacao_em_tokens(codigo_fonte)
 print(tokens)
 
 

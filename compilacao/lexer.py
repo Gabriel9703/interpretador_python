@@ -6,7 +6,7 @@ from io import BytesIO
 modulo tokenize, ignorando (ENCONDING, NEWLINE e ENDMAKER),
 por que a ideia é pegar apenas a string do token"""
 
-def lex(codigo_fonte):
+def separando_em_tokens(codigo_fonte):
     resultado = []
     tokens = tokenize.tokenize(BytesIO(codigo_fonte.encode('utf-8')).readline)
 

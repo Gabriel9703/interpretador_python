@@ -5,7 +5,6 @@ def soma (a , b):
 
 
 animal = "Elefante"
-
 lista_animais = ["cao", "gato"]
 
 def verificar_animal(animal, lista_animais):
